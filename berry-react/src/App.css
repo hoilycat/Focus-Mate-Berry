@@ -1,0 +1,68 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+/* 🤒 아픈 효과: 색상 변경 + 흔들림 */
+.berry-sick-filter {
+  filter: hue-rotate(250deg) saturate(1.5);
+  animation: shake 0.5s infinite;
+}
+
+/* 💤 자는 효과: 반투명 + 둥실둥실 */
+.berry-sleep-opacity {
+  opacity: 0.6;
+  animation: float 2s ease-in-out infinite;
+}
+
+/* 💀 신고 효과: 빨간 아우라 + 진동 */
+.berry-doom-shake {
+  filter: drop-shadow(0 0 10px red);
+  animation: vibrate 0.1s linear infinite;
+}
+
+/* --- 애니메이션 정의 --- */
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-2px); } 75% { transform: translateX(2px); } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes vibrate { 0% { transform: translate(0); } 25% { transform: translate(1px, 1px); } 50% { transform: translate(-1px, -1px); } 75% { transform: translate(1px, -1px); } 100% { transform: translate(-1px, 1px); } }
+
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+

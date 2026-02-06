@@ -1,0 +1,18 @@
+# [설정 파일] Focus-Mate Berry
+# 베리의 민감도와 성격을 결정합니다.
+
+system:
+  update_interval: 5  # 센서 확인 주기 (초)
+  camera_interval: 10 # 카메라 확인 주기 (초)
+
+thresholds:
+  temp_limit: 28      # 이 온도보다 높으면 '더움' (경고)
+  dark_limit: 50      # 이 밝기보다 낮으면 '어두움' (수면 모드)
+  
+timer:
+  warning_max: 3      # 경고 3번 무시하면 사망 (삼진 아웃)
+  study_cycle: 60     # 60초(1분)마다 공부 시간 기록
+
+path:
+  db: "data/berry.db"
+  assets: "assets/"
