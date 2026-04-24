@@ -50,7 +50,7 @@ class BerryVision:
             print(f"카메라 초기화 오류: {e}")
 
     def check_status(self):
-        default_val = (False, False, 0.5, "Center",0.5) # 앉아있음, 거북목 아님, 정면, 중앙, 정면
+        default_val = (False, False, 0.5, "Center", 0.5, 0.5) # 앉아있음, 거북목 아님, 정면, 중앙, 정면, 눈썹
         
         try:
             if not self.cap or not self.cap.isOpened():
@@ -113,9 +113,9 @@ class BerryVision:
                 elif gaze_ratio > 0.70: gaze = "Looking Left"
 
                 # 2024-04-24 업데이트: 눈썹 위치 기반 거북목 감지
-                # 눈썹 중앙(Landmark 105, 334)의 Y좌표가 화면 중간(0.5)보다 아래로 내려가면 거북목으로 판정
+                # 눈썹 중앙의 Y좌표가 화면 아래쪽(0.65)으로 많이 내려가면 거북목으로 판정 (0.5는 너무 민감함)
                 eyebrow_y = (landmarks[105].y + landmarks[334].y) / 2
-                is_turtle = eyebrow_y > 0.5
+                is_turtle = eyebrow_y > 0.65
 
             # 디버그 창
             cv2.putText(frame, f"Seated: {is_seated} | Gaze: {gaze}", (10, 30), 

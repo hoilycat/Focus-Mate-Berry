@@ -380,6 +380,11 @@ def main():
                         
                         status_text = "공부 중 🔥"
                         if is_turtle: status_text = "거북목 주의! 🐢"
+                        
+                        if not is_seated_real:
+                            ai_message = "👀 어라? 어디 봐? 너무 숙인 거 아냐?"
+                            status_text = "딴짓 의심 🔍"
+                            
                         display_state = f"{current_stage} ({status_text})"
                     else:
                         display_state = current_state
