@@ -208,7 +208,7 @@ def main():
     while True:
         try:
             # 1. 센서 및 명령 확인 (매 루프마다 한 번씩만 수행)
-            is_seated_real, is_turtle, head_angle, gaze, head_pitch= vision.check_status()
+            is_seated_real, is_turtle, head_angle, gaze, head_pitch, eyebrow_y = vision.check_status()
             remote_cmd = check_command()
             btn_action = button.check_status() if button else None
             
@@ -227,7 +227,7 @@ def main():
 
             # 💡 터미널에 실시간으로 카메라가 용용이를 보고 있는지 출력
             # 이 글자가 False면 카메라가 사용자를 못 찾고 있는 상태
-            print(f"\r👀 시력 테스트: [사람감지:{is_seated_real}] [각도:{head_angle:.2f}] [눈동자:{gaze}]", end="")
+            print(f"\r👀 시력 테스트: [사람감지:{is_seated_real}] [각도:{head_angle:.2f}] [눈동자:{gaze}] [눈썹:{eyebrow_y:.2f}]", end="")
 
 
             # ---------------------------------------------------------

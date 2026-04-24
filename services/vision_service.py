@@ -124,13 +124,16 @@ class BerryVision:
             
             # 맥에서는 waitKey(1)이 창을 유지하는 데 아주 중요함
             if cv2.waitKey(1) & 0xFF == ord('q'):
-                return default_val
+                return (False, False, 0.5, "Center", 0.5, 0.5)
 
-            return (is_seated, is_turtle, head_yaw, gaze, head_pitch) if is_seated else default_val
+            if is_seated:
+                return (is_seated, is_turtle, head_yaw, gaze, head_pitch, eyebrow_y)
+            else:
+                return (False, False, 0.5, "Center", 0.5, 0.5)
 
         except Exception as e:
             print(f"Vision Error: {e}")
-            return default_val
+            return (False, False, 0.5, "Center", 0.5, 0.5)
 
     def stop(self): # __del__ 보다는 명시적인 stop 함수가 맥에서 더 안전해!
         if self.cap:
