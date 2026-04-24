@@ -112,7 +112,10 @@ class BerryVision:
                 if gaze_ratio < 0.30: gaze = "Looking Right"
                 elif gaze_ratio > 0.70: gaze = "Looking Left"
 
-                is_turtle = abs(r_ear - l_ear) > 0.50
+                # 2024-04-24 업데이트: 눈썹 위치 기반 거북목 감지
+                # 눈썹 중앙(Landmark 105, 334)의 Y좌표가 화면 중간(0.5)보다 아래로 내려가면 거북목으로 판정
+                eyebrow_y = (landmarks[105].y + landmarks[334].y) / 2
+                is_turtle = eyebrow_y > 0.5
 
             # 디버그 창
             cv2.putText(frame, f"Seated: {is_seated} | Gaze: {gaze}", (10, 30), 
