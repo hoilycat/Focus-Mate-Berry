@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus-Mate Berry Simulator</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap');
+        body { font-family: 'Outfit', sans-serif; background-color: #FDFBF7; }
+        .animate-bounce-slow { animation: bounce 2s infinite; }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(-5%); }
+            50% { transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const App = () => {
+            const [activeTab, setActiveTab] = useState('simulator');
+            const [eyebrowY, setEyebrowY] = useState(0.4); // 0.5 이상이면 거북목
+            const [riskMeter, setRiskMeter] = useState(0); // 0~20, 10 이상이면 SICK
+            const [isAbsent, setIsAbsent] = useState(false);
+            const [strikes, setStrikes] = useState(0); // 30회 누적 시 잠듦
+            const [status, setStatus] = useState('GROWTH');
+            const [exp, setExp] = useState(0);
+
+            // 로직 시뮬레이션
+            useEffect(() => {
+                const timer = setInterval(() => {
+                    // 1. 상태 판단 (Priority: Absent > Risk > Turtle)
+                    if (isAbsent) {
+                        setStatus('SLEEP');
+                        return;
+                    }
+
+                    // 2. 딴짓 감지 (Risk Meter)
+                    if (riskMeter > 10) {
+                        setStatus('SICK');
+                    } else if (riskMeter > 0) {
+                        setStatus('EATING');
+                    } else {
+                        // 3. 거북목 감지
+                        if (eyebrowY > 0.5) {
+                            setStrikes(prev => {
+                                const next = prev + 1;
+                                if (next >= 30) setStatus('SLEEP');
+                                else setStatus('WARNING');
+                                return next;
+                            });
+                        } else {
+                            setStrikes(prev => Math.max(0, prev - 1));
+                            setStatus('GROWTH');
+                            setExp(prev => prev + 1);
+                        }
+                    }
+                }, 1000);
+                return () => clearInterval(timer);
+            }, [eyebrowY, riskMeter, isAbsent]);
+
+            const getEmoji = () => {
+                if (status === 'SLEEP') return "🥧💤";
+                if (status === 'SICK') return "😰";
+                if (status === 'EATING') return "😋";
+                if (status === 'WARNING') return "🐢";
+                if (exp > 100) return "🍓";
+                return "🌱";
+            };
+
+            const getMessage = () => {
+                if (status === 'SLEEP') return isAbsent ? "주인님 어디갔어..?" : "거북목 탈출 실패! 잠듦";
+                if (status === 'SICK') return "딴짓 그만해! 베리 아파..";
+                if (status === 'EATING') return "주인님 뭐 맛있는거 봐?";
+                if (status === 'WARNING') return "어어.. 고개 숙이지마!";
+                return "집중 최고! 베리 성장 중";
+            };
+
+            return (
+                <div className="min-h-screen text-slate-800 p-4 md:p-10">
+                    <header className="max-w-5xl mx-auto mb-10 flex flex-col md:flex-row justify-between items-center gap-4">
+                        <div className="flex items-center gap-3">
+                            <span className="text-4xl">🍓</span>
+                            <h1 className="text-2xl font-bold">Berry Logic Simulator</h1>
+                        </div>
+                        <div className="bg-slate-100 p-1 rounded-xl flex gap-1">
+                            <button className="px-4 py-2 bg-white rounded-lg shadow-sm font-bold text-sm text-rose-500">
+                                ⚙️ 로직 시뮬레이터
+                            </button>
+                        </div>
+                    </header>
+
+                    <main className="max-w-5xl mx-auto grid lg:grid-cols-12 gap-8">
+                        {/* 좌측 컨트롤러 */}
+                        <div className="lg:col-span-4 space-y-8 bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+                            <div>
+                                <div className="flex justify-between text-sm font-bold mb-4">
+                                    <span className="flex items-center gap-2">📏 눈썹 높이 (Eyebrow Y)</span>
+                                    <span className={eyebrowY > 0.5 ? "text-rose-500" : "text-emerald-500"}>{eyebrowY.toFixed(2)}</span>
+                                </div>
+                                <input type="range" min="0" max="1" step="0.01" value={eyebrowY} onChange={e => setEyebrowY(Number(e.target.value))} 
+                                    className="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-rose-500"/>
+                                <div className="flex justify-between text-[10px] text-slate-400 mt-2">
+                                    <span>높게 들음 (Good)</span>
+                                    <span>낮게 숙임 (Turtle)</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div className="flex justify-between text-sm font-bold mb-4">
+                                    <span className="flex items-center gap-2">🚨 딴짓 위험도 (Risk Meter)</span>
+                                    <span className={riskMeter > 10 ? "text-rose-500" : "text-amber-500"}>{riskMeter}</span>
+                                </div>
+                                <input type="range" min="0" max="20" step="1" value={riskMeter} onChange={e => setRiskMeter(Number(e.target.value))} 
+                                    className="w-full h-2 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-amber-500"/>
+                                <p className="text-[10px] text-slate-400 mt-2">10점 초과 시 'SICK' 상태 돌입</p>
+                            </div>
+
+                            <div className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                                <span className="text-sm font-bold">자리 비움 (Absence)</span>
+                                <button onClick={() => setIsAbsent(!isAbsent)} 
+                                    className={`w-12 h-6 rounded-full transition-colors relative ${isAbsent ? 'bg-rose-500' : 'bg-slate-300'}`}>
+                                    <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${isAbsent ? 'right-1' : 'left-1'}`}></div>
+                                </button>
+                            </div>
+
+                            <button onClick={() => {setExp(0); setStrikes(0); setRiskMeter(0); setEyebrowY(0.4); setStatus('GROWTH'); setIsAbsent(false);}}
+                                className="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold hover:scale-[0.98] transition-transform">
+                                시뮬레이션 초기화
+                            </button>
+                        </div>
+
+                        {/* 우측 디스플레이 */}
+                        <div className={`lg:col-span-8 rounded-[40px] border border-slate-100 shadow-xl min-h-[500px] flex flex-col items-center justify-center p-10 transition-all duration-700 relative overflow-hidden ${
+                            status === 'SLEEP' ? 'bg-slate-100' : 
+                            status === 'SICK' ? 'bg-rose-50' : 
+                            status === 'WARNING' ? 'bg-amber-50' : 'bg-white'
+                        }`}>
+                            {/* 스트라이크 게이지 */}
+                            <div className="absolute top-8 right-10 text-right">
+                                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Turtle Neck Strikes</span>
+                                <div className="flex gap-1 mt-2">
+                                    {Array.from({length: 30}).map((_, i) => (
+                                        <div key={i} className={`w-1 h-4 rounded-full ${i < strikes ? 'bg-rose-400' : 'bg-slate-200'}`}></div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className={`text-[120px] mb-8 transition-transform duration-500 ${status === 'GROWTH' ? 'animate-bounce-slow' : ''}`}>
+                                {getEmoji()}
+                            </div>
+
+                            <h2 className="text-4xl font-black text-slate-800 mb-3">{getMessage()}</h2>
+                            <p className="text-slate-500 font-medium">현재 상태: <span className="text-rose-500 font-bold">{status}</span></p>
+
+                            {/* 경험치 바 */}
+                            <div className="absolute bottom-0 left-0 w-full px-10 pb-10">
+                                <div className="flex justify-between items-end mb-2">
+                                    <span className="text-xs font-bold text-slate-400">EXP: {exp}</span>
+                                    <span className="text-xs font-bold text-slate-400">{Math.min(exp, 100)}%</span>
+                                </div>
+                                <div className="w-full h-3 bg-slate-200 rounded-full overflow-hidden">
+                                    <div className="h-full bg-gradient-to-r from-rose-400 to-rose-600 transition-all duration-500" style={{width: `${Math.min(exp, 100)}%`}}></div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

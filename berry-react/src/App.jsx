@@ -208,7 +208,7 @@ const { asset, effectClass } = getBerryAsset(berry.status, progress);
     // 다크모드 대응을 위해 최상단 div에 조건부 클래스 부여
     <div className={`${darkMode ? 'dark' : ''} transition-all duration-500`}>
       <div 
-        className={`min-h-screen p-4 transition-colors duration-500 ${darkMode ? 'bg-[#2D2424] text-pink-100' : 'bg-[#FFF0F5] text-gray-800'}`}
+        className={`min-h-screen p-4 transition-all duration-500 ${darkMode ? 'bg-[#2D2424] text-pink-100' : 'bg-[#FFF0F5] text-gray-800'} ${berry.status.includes("WARNING") || berry.status.includes("주의") ? 'warning-active' : ''}`}
         style={{ fontFamily: font }} // 선택한 폰트 적용
       >
         {/* 구글 폰트 불러오기 */}
@@ -260,11 +260,24 @@ const { asset, effectClass } = getBerryAsset(berry.status, progress);
             animation: berry-shake 0.1s infinite; /* 덜덜덜 떠는 효과 추가 */
             transition: all 0.3s ease;
           }
+
+          /* 🚨 거북목 경고: 화면 가장자리가 주황색으로 깜빡임 */
+          .warning-active {
+            animation: warning-glow 1s infinite;
+            box-shadow: inset 0 0 50px rgba(251, 191, 36, 0.4);
+            border: 6px solid #FBBF24 !important;
+          }
+
+          @keyframes warning-glow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; box-shadow: inset 0 0 100px rgba(251, 191, 36, 0.6); }
+          }
         
         `}</style>
 
         {/* --- 상단 헤더 --- */}
-        <header className="max-w-md mx-auto flex items-center justify-between mb-8 pt-4">
+        <header className={`max-w-md mx-auto flex items-center justify-between mb-8 pt-4 transition-all duration-300 ${berry.status.includes("WARNING") || berry.status.includes("주의") ? 'scale-110' : ''}`}>
+
           <h1 className={`text-2xl font-bold flex items-center gap-2 ${darkMode ? 'text-pink-300' : 'text-pink-500'}`}>
             <span>🍓</span> Focus Mate Berry
           </h1>

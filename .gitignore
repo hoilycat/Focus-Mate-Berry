@@ -8,3 +8,4 @@ kakao_token.json
 secrets.json
 get_token.py
 archeive/
+*.db
