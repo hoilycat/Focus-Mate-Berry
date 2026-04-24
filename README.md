@@ -34,7 +34,10 @@
 
 프로젝트를 실제로 실행하기 전, 베리가 어떻게 반응하는지 미리 체험해볼 수 있는 시뮬레이터를 제공합니다.
 
-1.  프로젝트 루트 폴더의 `simulator.html` 파일을 웹 브라우저(Chrome 등)로 엽니다.
+[**👉 시뮬레이터 체험하기 (Live Demo)**](https://hoilycat.github.io/Focus-Mate-Berry/simulator.html)
+*(GitHub Pages 설정 후 이용 가능)*
+
+1.  프로젝트 루트 폴더의 `simulator.html` 파일을 웹 브라우저로 열거나 위 링크를 클릭합니다.
 2.  **눈썹 높이(Eyebrow Y)** 슬라이더를 조절하여 거북목 감지 로직을 테스트합니다.
 3.  **딴짓 위험도(Risk Meter)** 슬라이더를 조절하여 베리의 건강 상태 변화를 확인합니다.
 
