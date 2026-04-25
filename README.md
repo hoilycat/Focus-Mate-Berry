@@ -1,7 +1,17 @@
 # 🍓 Focus Mate Berry (포커스 메이트 베리)
+![Version](https://img.shields.io/badge/version-1.0.0-FFB7C5?style=flat-square)
+![Status](https://img.shields.io/badge/status-developing-FF8DA1?style=flat-square)
 
 > **"당신의 집중이 베리를 성장시킵니다!"**  
 > 포커스 메이트 베리는 사용자의 집중도와 자세를 실시간으로 모니터링하여 함께 성장하는 AI 공부 친구입니다.
+
+<p align="left">
+  <img src="https://img.shields.io/badge/FastAPI-FFB7C5?style=flat-square&logo=fastapi&logoColor=white"/>
+  <img src="https://img.shields.io/badge/React-FF8DA1?style=flat-square&logo=react&logoColor=white"/>
+  <img src="https://img.shields.io/badge/MediaPipe-FFB7C5?style=flat-square&logo=google&logoColor=white"/>
+  <img src="https://img.shields.io/badge/OpenCV-FF8DA1?style=flat-square&logo=opencv&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Google_Gemini-FFB7C5?style=flat-square&logo=googlegemini&logoColor=white"/>
+</p>
 
 ---
 
@@ -27,6 +37,103 @@
 ### 5. 📊 대시보드 및 리모컨
 - **실시간 대시보드**: React 기반의 예쁜 웹 화면에서 베리의 상태와 공부 시간을 확인할 수 있습니다.
 - **원격 제어**: 웹 화면의 버튼을 통해 베리를 시작하거나, 멈추거나, 아픈 베리를 치료(`HEAL`)해줄 수 있습니다.
+
+---
+## ⚙️ System Architecture
+
+```mermaid
+graph TD
+    %% [1단계] 색칠 딱지 정의
+    classDef berryInput fill:#FFF5F7,stroke:#FFB7C5,stroke-width:2px,color:#5D4037;
+    classDef berryCore fill:#FFD1DC,stroke:#FFA6C9,stroke-width:2px,color:#5D4037;
+    classDef berryAI fill:#FFB7B2,stroke:#FF6B6B,stroke-width:2px,color:#5D4037,font-weight:bold;
+    classDef berryOut fill:#FFE4E1,stroke:#FFB7C5,stroke-dasharray: 5 5,color:#5D4037;
+
+    %% [2단계] 흐름 그리기
+    A[📷 카메라] --> B[MediaPipe<br/>얼굴 & 자세 감지]
+    A --> C[OpenCV<br/>영상 처리]
+    
+    B --> D[Vision Service<br/>눈썹 위치 & 고개 숙임 분석<br/>독서 모드 판별]
+    C --> D
+    
+    E[🖥️ PC 활동 감지<br/>Spy Service] --> F[State Machine<br/>베리 상태 관리]
+    D --> F
+    
+    F --> G[Gemini AI<br/>Hybrid Strategy<br/>평소: 멘트 은행 / 위기: AI 호출]
+    F --> H[KakaoTalk<br/>긴급 신고 알림]
+    F --> I[FastAPI Backend]
+    I --> J[React Dashboard<br/>베리 상태 & 타이머 시각화]
+
+    %% [3단계] 딱지 붙이기
+    class A,E berryInput
+    class B,C,D,F,I,J berryCore
+    class G berryAI
+    class H berryOut
+```
+
+---
+
+
+## 🌱 Berry State Machine
+
+```mermaid
+%%{init:{
+  theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#FFD1DC',       
+      'primaryTextColor': '#5D4037',  
+      'primaryBorderColor': '#FFA6C9',
+      'lineColor': '#8D6E63',          
+      'secondaryColor': '#FFF5F7',    
+      'tertiaryColor': '#FFB7C5',    
+      'edgeLabelBackground':'#ffffff', 
+      'labelColor': '#5D4037'          
+}}%%
+
+
+stateDiagram-v2
+    direction TB
+
+    %% [1단계] 색칠 딱지 정의 (이건 그대로!)
+    classDef pinkNode fill:#FFD1DC,stroke:#FFA6C9,stroke-width:2px,color:#5D4037;
+    classDef studyBox fill:#FFF5F7,stroke:#FFB7C5,stroke-width:2px,color:#5D4037;
+    classDef warning fill:#FFB7B2,stroke:#FF6B6B,stroke-width:2px,color:#5D4037;
+    classDef danger fill:#FF6B6B,color:#fff,font-weight:bold,stroke:#C0392B,stroke-width:2px;
+
+    %% [2단계] 상태와 흐름 그리기
+    [*] --> SEED : 시작
+
+    state "공부 중 (Active Study)" as STUDYING {
+        direction TB
+        
+        SEED --> SPROUT : 19% 달성
+        SPROUT --> SMALL : 38% 달성
+        SMALL --> BIG : 57% 달성
+        BIG --> FAIRY : 76% 달성
+        
+        SEED --> EATING : 딴짓 감지
+        SPROUT --> EATING : 딴짓 감지
+        SMALL --> EATING : 딴짓 감지
+        BIG --> EATING : 딴짓 감지
+    }
+
+    EATING --> SICK : 딴짓 10초<br/>경과
+    SICK --> DOOM : 딴짓 30초<br/>경과 💀
+    STUDYING --> SLEEP : 자리 비움<br/>60초 경과 
+
+    SICK --> SEED : HEAL (재개)
+    SLEEP --> SEED : 자리 복귀<br/>(공부 재개)
+    DOOM --> SEED : 정신 차림<br/>(처음부터)
+
+    %% [3단계] 딱지 붙이기 (에러 나던 [*]는 뺐어!)
+    class STUDYING studyBox
+    class SEED, SPROUT, SMALL, BIG, FAIRY, EATING, SLEEP pinkNode
+    class SICK warning
+    class DOOM danger
+
+```
+
+
 
 ---
 
