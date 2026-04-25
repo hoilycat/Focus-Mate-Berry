@@ -46,7 +46,7 @@ class BerryStateMachine:
 
         # 3. 거북목 체크 (사람이 있을 때만)
         if is_turtle:
-            self.current_state = "WARNING"
+            # self.current_state = "WARNING"  <-- 이제 여기서 상태를 바꾸지 않음 (성장 단계 유지)
             self.strikes += 1
             if self.strikes >= 30: 
                 self.current_state = "SLEEP"

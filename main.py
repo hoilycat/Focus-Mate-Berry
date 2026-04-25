@@ -320,6 +320,7 @@ def main():
                 if head_pitch > 0.75: # '30도 숙임' 각도
                     vision_distracted = False # 고개 숙인 건 딴짓이 아니라고 선언!
                     is_reading = True
+                    is_turtle = False # 📚 독서 중에는 거북목 판정에서 제외 (자비로운 베리)
 
 
                 # [자리비움 판정] (1분 유예)
@@ -380,6 +381,12 @@ def main():
                         
                         status_text = "공부 중 🔥"
                         if is_turtle: status_text = "거북목 주의! 🐢"
+                        if is_reading: status_text = "독서 중 📖"
+                        
+                        if not is_seated_real:
+                            ai_message = "👀 어라? 어디 봐? 너무 숙인 거 아냐?"
+                            status_text = "딴짓 의심 🔍"
+                            
                         display_state = f"{current_stage} ({status_text})"
                     else:
                         display_state = current_state
