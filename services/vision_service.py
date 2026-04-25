@@ -115,7 +115,7 @@ class BerryVision:
                 # 2024-04-24 업데이트: 눈썹 위치 기반 거북목 감지
                 # 눈썹 중앙의 Y좌표가 화면 아래쪽(0.65)으로 많이 내려가면 거북목으로 판정 (0.5는 너무 민감함)
                 eyebrow_y = (landmarks[105].y + landmarks[334].y) / 2
-                is_turtle = eyebrow_y > 0.65
+                is_turtle = eyebrow_y > 0.63
 
             # 디버그 창
             cv2.putText(frame, f"Seated: {is_seated} | Gaze: {gaze}", (10, 30), 
