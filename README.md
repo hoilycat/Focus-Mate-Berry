@@ -14,6 +14,16 @@
 </p>
 
 ---
+## 🎮 프로젝트 데모 (Demo)
+
+| 🍓 캐릭터 상호작용 | 🐢 실시간 자세 및 상태 감지 |
+| :---: | :---: |
+| ![Berry Interaction](./The-Growth-Journey.gif) | ![Posture Demo](./berry-posture-demo.gif) |
+| 사용자의 상태에 따라 <br/> 베리가 실시간으로 대화합니다. | MediaPipe를 활용해 <br/> 자세와 시선을 정확히 추적합니다. |
+---
+
+
+
 
 ## 🌟 주요 기능
 
@@ -94,7 +104,7 @@ graph TD
 stateDiagram-v2
     direction TB
 
-    %% [1단계] 색칠 딱지 정의 (이건 그대로!)
+    %% [1단계] 색칠 딱지 정의
     classDef pinkNode fill:#FFD1DC,stroke:#FFA6C9,stroke-width:2px,color:#5D4037;
     classDef studyBox fill:#FFF5F7,stroke:#FFB7C5,stroke-width:2px,color:#5D4037;
     classDef warning fill:#FFB7B2,stroke:#FF6B6B,stroke-width:2px,color:#5D4037;
@@ -125,7 +135,7 @@ stateDiagram-v2
     SLEEP --> SEED : 자리 복귀<br/>(공부 재개)
     DOOM --> SEED : 정신 차림<br/>(처음부터)
 
-    %% [3단계] 딱지 붙이기 (에러 나던 [*]는 뺐어!)
+    %% [3단계] 딱지 붙이기
     class STUDYING studyBox
     class SEED, SPROUT, SMALL, BIG, FAIRY, EATING, SLEEP pinkNode
     class SICK warning
@@ -149,6 +159,9 @@ stateDiagram-v2
 3.  **딴짓 위험도(Risk Meter)** 슬라이더를 조절하여 베리의 건강 상태 변화를 확인합니다.
 
 ---
+
+
+
 
 ## 🛠 기술 스택
 
