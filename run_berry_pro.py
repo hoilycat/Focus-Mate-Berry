@@ -3,6 +3,10 @@ import sys
 import time
 import os
 import platform
+from dotenv import load_dotenv
+
+# .env 파일에서 환경 변수를 로드합니다.
+load_dotenv()
 
 def run_berry_pro():
     # 항상 이 스크립트가 있는 폴더로 이동!
