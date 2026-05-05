@@ -88,7 +88,7 @@ graph TD
 
 ```mermaid
 %%{init:{
-  theme': 'base',
+  'theme': 'base',
     'themeVariables': {
       'primaryColor': '#FFD1DC',       
       'primaryTextColor': '#5D4037',  
