@@ -70,11 +70,11 @@ function App() {
     const fetchData = async () => {
       try {
         // 현재 상태 가져오기
-        const resStatus = await axios.get('http://localhost:8000/api/status');
+        const resStatus = await axios.get('http://localhost:8001/api/status');
         setBerry(resStatus.data);
         
         // 명예의 전당 가져오기
-        const resAch = await axios.get('http://localhost:8000/api/achievements');
+        const resAch = await axios.get('http://localhost:8001/api/achievements');
         setAchievements(resAch.data);
 
         // 처음 로딩 때만 서버에 저장된 이름을 입력창에 넣어줌
@@ -96,7 +96,7 @@ function App() {
   // 명령 전송 함수
   const sendCommand = async (cmdText) => {
     try {
-      await axios.post('http://localhost:8000/api/command', { cmd: cmdText });
+      await axios.post('http://localhost:8001/api/command', { cmd: cmdText });
       console.log(`명령 전송 성공: ${cmdText}`);
     } catch (error) {
       console.error("명령 전송 실패", error);
