@@ -19,9 +19,9 @@ class BerryVision:
                 min_detection_confidence=0.5,
                 min_tracking_confidence=0.5
             )
-            print("✅ 베리 시력 강화 완료 (맥/윈도우 공용)")
+            print("[Vision] 시력 강화 완료 (공용 모드)")
         except Exception as e:
-            print(f"❌ 엔진 초기화 실패: {e}")
+            print(f"[Error] 엔진 초기화 실패: {e}")
         
         self._init_camera()
 
@@ -45,7 +45,7 @@ class BerryVision:
             self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
             
             if not self.cap.isOpened():
-                print("⚠️ 카메라를 찾을 수 없어요. 권한 설정을 확인해 주세요!")
+                print("[!] 카메라를 찾을 수 없어요. 권한 설정을 확인해 주세요!")
         except Exception as e:
             print(f"카메라 초기화 오류: {e}")
 
