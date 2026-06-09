@@ -31,18 +31,20 @@ https://github.com/user-attachments/assets/cbf921dc-0b6a-49f1-9d8c-eeb8900764f7
 ## 🍓 베리 캐릭터
 
 ### 🌱 성장 단계
+> 씨앗 ~ 큰 딸기: AI 생성 이미지 / 요정 베리: 직접 제작 🎨
 
 | 씨앗 | 새싹 | 작은 열매 | 큰 딸기 | 요정 베리 |
 | :---: | :---: | :---: | :---: | :---: |
-| ![seed](./berry-react/src/images/seed.png) | ![sprout](./berry-react/src/images/sprout.png) | ![small](./berry-react/src/images/small.png) | ![big](./berry-react/src/images/big.png) | ![fairy](./berry-react/src/images/cheerberry.gif) |
+| <img src="./berry-react/src/images/seed.png" width="100" /> | <img src="./berry-react/src/images/sprout.png" width="100" /> | <img src="./berry-react/src/images/small.png" width="100" /> | <img src="./berry-react/src/images/big.png" width="100" /> | <img src="./berry-react/src/images/cheerberry.gif" width="100" /> |
 | SEED | SPROUT | SMALL | BIG | FAIRY |
 
 ### 💫 상태별 모습
+> 모든 캐릭터 직접 도트 제작 & 애니메이션 🎨
 
-| 열공 중 | 딴짓 중 | 아픔 | 잠듦 | 위험 |
-| :---: | :---: | :---: | :---: | :---: |
-| ![study](./berry-react/src/images/study_berry.gif) | ![eating](./berry-react/src/images/eatingberry.gif) | ![sick](./berry-react/src/images/sickberry01.gif) | ![sleep](./berry-react/src/images/sleepingberry.gif) | ![doom](./berry-react/src/images/doomberry.gif) |
-| GROWTH | EATING | SICK | SLEEP | DOOM |
+| 열공 중 | 딴짓 중 | 아픔 | 잠듦 | 위험 | 위험 (ver.2) |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| <img src="./berry-react/src/images/study_berry.gif" width="100" /> | <img src="./berry-react/src/images/eatingberry.gif" width="100" /> | <img src="./berry-react/src/images/sickberry01.gif" width="100" /> | <img src="./berry-react/src/images/sleepingberry.gif" width="100" /> | <img src="./berry-react/src/images/doomberry.gif" width="100" /> | <img src="./berry-react/src/images/doomberry02.gif" width="100" /> |
+| GROWTH | EATING | SICK | SLEEP | DOOM | DOOM |
 
 ---
 
