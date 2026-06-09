@@ -1,11 +1,14 @@
 import cv2
 import platform
 import mediapipe as mp
+import ctypes
+import ctypes.wintypes
 
 class BerryVision:
     def __init__(self):
         self.cap = None
         self.face_mesh = None
+        self._topmost_set = False
         
         # 시각화 도구
         self.mp_drawing = mp.solutions.drawing_utils
@@ -22,8 +25,22 @@ class BerryVision:
             print("[Vision] 시력 강화 완료 (공용 모드)")
         except Exception as e:
             print(f"[Error] 엔진 초기화 실패: {e}")
-        
+
         self._init_camera()
+        cv2.namedWindow("Berry Debug", cv2.WINDOW_NORMAL)
+        cv2.resizeWindow("Berry Debug", 720, 540)
+        cv2.moveWindow("Berry Debug", 730, 0)
+
+        # Windows용 항상 위 고정 준비
+        if platform.system() == "Windows":
+            self._user32 = ctypes.WinDLL('user32', use_last_error=True)
+            self._user32.FindWindowW.restype = ctypes.wintypes.HWND
+            self._user32.FindWindowW.argtypes = [ctypes.wintypes.LPCWSTR, ctypes.wintypes.LPCWSTR]
+            self._user32.SetWindowPos.argtypes = [
+                ctypes.wintypes.HWND, ctypes.wintypes.HWND,
+                ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int,
+                ctypes.wintypes.UINT
+            ]
 
     def _init_camera(self):
         try:
@@ -121,7 +138,23 @@ class BerryVision:
             cv2.putText(frame, f"Seated: {is_seated} | Gaze: {gaze}", (10, 30), 
                         cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2)
             cv2.imshow("Berry Debug", frame)
-            
+
+            # 첫 프레임 뜨면 항상 위에 고정
+            if not self._topmost_set and platform.system() == "Windows":
+                user32 = ctypes.WinDLL('user32', use_last_error=True)
+                user32.FindWindowW.restype = ctypes.wintypes.HWND
+                user32.FindWindowW.argtypes = [ctypes.wintypes.LPCWSTR, ctypes.wintypes.LPCWSTR]
+                user32.SetWindowPos.argtypes = [
+                    ctypes.wintypes.HWND, ctypes.wintypes.HWND,
+                    ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int,
+                    ctypes.wintypes.UINT
+                ]
+                hwnd = user32.FindWindowW(None, "Berry Debug")
+                if hwnd:
+                    HWND_TOPMOST = ctypes.wintypes.HWND(-1)
+                    user32.SetWindowPos(hwnd, HWND_TOPMOST, 730, 0, 720, 540, 0)
+                    self._topmost_set = True
+
             # 맥에서는 waitKey(1)이 창을 유지하는 데 아주 중요함
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 return (False, False, 0.5, "Center", 0.5, 0.5)
