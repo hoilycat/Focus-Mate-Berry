@@ -186,7 +186,7 @@ class BerryBrain:
             if use_ai:
                 try:
                     # AI 호출 시도
-                    full_prompt = f"상황/조건: {concept_prompt}\n너는 나의 친한 친구 '베리'야. 부연 설명 절대로 없이 딱 대사 한 문장만 출력해. 과한 애교('자기야', '쪽' 등)는 빼고, 친한 친구처럼 다정하고 짧게(15자 내외) 반말로 말해줘."
+                    full_prompt = f"상황/조건: {concept_prompt}\n너는 나의 친한 친구 '베리'야. 딱 대사 한 문장만 출력해. 절대 15자 이하로. 초과 금지. '야!' 같은 거친 말 금지. '자기야', '쪽' 같은 과한 애교도 금지. 따뜻하고 다정한 친구 말투로 반말해줘."
                     response = self.client.models.generate_content(model=self.MODEL_ID, contents=full_prompt)
                     self.last_message = response.text.strip()
                     print("🤖 [AI 응답 성공]")
