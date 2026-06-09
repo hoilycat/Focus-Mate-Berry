@@ -16,10 +16,34 @@
 ---
 ## 🎮 프로젝트 데모 (Demo)
 
-| 🍓 캐릭터 상호작용 | 🐢 실시간 자세 및 상태 감지 |
-| :---: | :---: |
-| ![Berry Interaction](./The-Growth-Journey.gif) | ![Posture Demo](./berry-posture-demo.gif) |
-| 사용자의 상태에 따라 <br/> 베리가 실시간으로 대화합니다. | MediaPipe를 활용해 <br/> 자세와 시선을 정확히 추적합니다. |
+### 📹 얼굴 인식 & 베리 성장 과정
+> MediaPipe로 얼굴과 자세를 실시간 감지하며, 집중 시간에 따라 베리가 성장합니다.
+
+https://github.com/user-attachments/assets/9841ffef-e988-4238-8222-2c8856264430
+
+### 📹 딴짓 감지 & 카카오톡 긴급 신고
+> 딴짓이 감지되면 베리가 아프기 시작하고, 일정 시간이 지나면 보호자에게 카카오톡 알림을 보냅니다.
+
+https://github.com/user-attachments/assets/cbf921dc-0b6a-49f1-9d8c-eeb8900764f7
+
+---
+
+## 🍓 베리 캐릭터
+
+### 🌱 성장 단계
+
+| 씨앗 | 새싹 | 작은 열매 | 큰 딸기 | 요정 베리 |
+| :---: | :---: | :---: | :---: | :---: |
+| ![seed](./berry-react/src/images/seed.png) | ![sprout](./berry-react/src/images/sprout.png) | ![small](./berry-react/src/images/small.png) | ![big](./berry-react/src/images/big.png) | ![fairy](./berry-react/src/images/cheerberry.gif) |
+| SEED | SPROUT | SMALL | BIG | FAIRY |
+
+### 💫 상태별 모습
+
+| 열공 중 | 딴짓 중 | 아픔 | 잠듦 | 위험 |
+| :---: | :---: | :---: | :---: | :---: |
+| ![study](./berry-react/src/images/study_berry.gif) | ![eating](./berry-react/src/images/eatingberry.gif) | ![sick](./berry-react/src/images/sickberry01.gif) | ![sleep](./berry-react/src/images/sleepingberry.gif) | ![doom](./berry-react/src/images/doomberry.gif) |
+| GROWTH | EATING | SICK | SLEEP | DOOM |
+
 ---
 
 
