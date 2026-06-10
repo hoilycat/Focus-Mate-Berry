@@ -19,12 +19,25 @@
 ### 📹 얼굴 인식 & 베리 성장 과정
 > MediaPipe로 얼굴과 자세를 실시간 감지하며, 집중 시간에 따라 베리가 성장합니다.
 
-https://github.com/user-attachments/assets/9841ffef-e988-4238-8222-2c8856264430
+
+
+
+https://github.com/user-attachments/assets/06031b70-2c63-409e-b674-2fb989eec61e
+
+
+
 
 ### 📹 딴짓 감지 & 카카오톡 긴급 신고
 > 딴짓이 감지되면 베리가 아프기 시작하고, 일정 시간이 지나면 보호자에게 카카오톡 알림을 보냅니다.
 
-https://github.com/user-attachments/assets/cbf921dc-0b6a-49f1-9d8c-eeb8900764f7
+
+
+
+https://github.com/user-attachments/assets/f520ac60-14c8-40d6-8097-8d56c79a56cf
+
+
+
+
 
 ---
 
