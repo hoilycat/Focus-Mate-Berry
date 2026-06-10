@@ -41,10 +41,10 @@ https://github.com/user-attachments/assets/cbf921dc-0b6a-49f1-9d8c-eeb8900764f7
 ### 💫 상태별 모습
 > 모든 캐릭터 직접 도트 제작 & 애니메이션 🎨
 
-| 열공 중 | 딴짓 중 | 아픔 | 잠듦 | 위험 | 위험 (ver.2) |
-| :---: | :---: | :---: | :---: | :---: | :---: |
-| <img src="./berry-react/src/images/study_berry.gif" width="100" /> | <img src="./berry-react/src/images/eatingberry.gif" width="100" /> | <img src="./berry-react/src/images/sickberry01.gif" width="100" /> | <img src="./berry-react/src/images/sleepingberry.gif" width="100" /> | <img src="./berry-react/src/images/doomberry.gif" width="100" /> | <img src="./berry-react/src/images/doomberry02.gif" width="100" /> |
-| GROWTH | EATING | SICK | SLEEP | DOOM | DOOM |
+| 열공 중 | 딴짓 중 | 아픔 | 잠듦 | 위험 | 위험 (ver.2) | 긴급 신고 | 긴급 신고 (ver.2) | 대기 중 | 완료 |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| <img src="./berry-react/src/images/study_berry.gif" width="100" /> | <img src="./berry-react/src/images/eatingberry.gif" width="100" /> | <img src="./berry-react/src/images/sickberry01.gif" width="100" /> | <img src="./berry-react/src/images/sleepingberry.gif" width="100" /> | <img src="./berry-react/src/images/doomberry.gif" width="100" /> | <img src="./berry-react/src/images/doomberry02.gif" width="100" /> | <img src="./berry-react/src/images/callingberry1.gif" width="100" /> | <img src="./berry-react/src/images/callingberry2.gif" width="100" /> | <img src="./berry-react/src/images/berryidle.gif" width="100" /> | <img src="./berry-react/src/images/finishberry.gif" width="100" /> |
+| GROWTH | EATING | SICK | SLEEP | DOOM | DOOM | CALLING | CALLING | IDLE | FINISH |
 
 ---
 
