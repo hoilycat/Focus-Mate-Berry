@@ -64,6 +64,11 @@ https://github.com/user-attachments/assets/f520ac60-14c8-40d6-8097-8d56c79a56cf
 | <img src="./berry-react/src/images/doomberry02.gif" width="100" /> | <img src="./berry-react/src/images/callingberry1.gif" width="100" /> | <img src="./berry-react/src/images/callingberry2.gif" width="100" /> | <img src="./berry-react/src/images/berryidle.gif" width="100" /> | <img src="./berry-react/src/images/finishberry.gif" width="100" /> |
 | DOOM | CALLING | CALLING | IDLE | FINISH |
 
+| 거북목 경고 |
+| :---: |
+| <img src="./berry-react/src/images/turtleberry.gif" width="100" /> |
+| WARNING |
+
 ---
 
 
@@ -279,6 +284,7 @@ npm run dev
 - [x] 💻 React 기반 대시보드 UI 및 타이머 구현
 - [x] 🧪 MediaPipe 기반 자세 감지 기초 로직 설계
 - [x] 💬 카카오톡 알림 서비스 연동
+- [x] **거북목 감지 오버레이 배너 추가** (거북목 GIF + 경고 배너)
 - [ ] **거북목 감지 정밀도 고도화** 🚧 (현재 작업 중!)
     - *사용자 체형별 임계값(Threshold) 최적화 진행*
 - [ ] 카카오 로그인 OAuth 도입 및 서비스 공개 범위 확장 🚧
