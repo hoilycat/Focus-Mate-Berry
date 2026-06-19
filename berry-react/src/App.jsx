@@ -17,7 +17,8 @@ import gifStudy   from './images/study_berry2.gif';   // 공부하는 베리
 import gifEating   from './images/eatingberry.gif';       // 군것질 하는 베리
 import berryCall1  from './images/callingberry1.gif'; // 전화거는 베리1  로직에서 선언 해야함
 import berryCall2  from './images/callingberry2.gif';   // 전화거는 베리2 로직에서 선언 해야함
-import gifSick1   from './images/sickberry01.gif';       // 아픈 베리1 
+import gifSick1   from './images/sickberry01.gif';       // 아픈 베리1
+import gifTurtle  from './images/turtleberry.gif';      // 거북목 베리
 import gifSick2   from './images/sickberry02.gif'; //  아파서 쓰러진 베리2_아픈 상태가 지속될 때 한번 나타나고 doom 상태로 이어짐
 import gifDoom1   from './images/doomberry.gif'; // 굳어진 베리1 처음에 doom상태일때만 나타남
 import gifDoom2   from './images/doomberry02.gif'; // 굳어진 베리2 doom상태가 지속될 때
@@ -297,7 +298,7 @@ const { asset, effectClass } = getBerryAsset(berry.status, progress);
         {(berry.status.includes("주의")) && (
           <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-md">
             <div className="flex items-center gap-3 bg-yellow-400 text-yellow-900 font-bold px-5 py-3 rounded-2xl shadow-lg animate-pulse">
-              <span className="text-2xl">🐢</span>
+              <img src={gifTurtle} alt="거북목 베리" className="w-10 h-10" />
               <div>
                 <p className="text-sm font-black">거북목 감지!</p>
                 <p className="text-xs font-medium opacity-80">고개를 들고 허리를 펴주세요</p>
