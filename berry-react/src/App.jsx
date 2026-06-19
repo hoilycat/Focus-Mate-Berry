@@ -293,6 +293,20 @@ const { asset, effectClass } = getBerryAsset(berry.status, progress);
           </div>
         </header>
 
+        {/* 🐢 거북목 경고 오버레이 배너 */}
+        {(berry.status.includes("주의")) && (
+          <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-md">
+            <div className="flex items-center gap-3 bg-yellow-400 text-yellow-900 font-bold px-5 py-3 rounded-2xl shadow-lg animate-pulse">
+              <span className="text-2xl">🐢</span>
+              <div>
+                <p className="text-sm font-black">거북목 감지!</p>
+                <p className="text-xs font-medium opacity-80">고개를 들고 허리를 펴주세요</p>
+              </div>
+              <span className="ml-auto text-2xl">⚠️</span>
+            </div>
+          </div>
+        )}
+
         <main className="max-w-md mx-auto space-y-6">
           {/* --- 캐릭터 카드 섹션 --- */}
           <div className={`rounded-3xl p-8 shadow-xl transition-all duration-500 flex flex-col items-center ${darkMode ? 'bg-[#3D3232] border-pink-800 text-pink-200' : 'bg-white shadow-pink-100 border border-pink-50'}`}>
